@@ -26,9 +26,9 @@ class Grid:
                 2:{0:" ",1:" ",2:" ",3:" "},\
                 3:{0:" ",1:" ",2:" ",3:" "}}}
     
-    def __init__(self, previous=False):
-        if not previous:
-            self.grid = previous
+#    def __init__(self, previous=False):
+#        if previous:
+#            self.grid = previous
     
     def __getattr__(self, key):
         level  = int(key[1]) - 1
@@ -139,12 +139,23 @@ class Computer:
         q7 = [a, r, ar]
         q8 = [l, r, rr]
         q9 = [u, d, dd]
-        quads  = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9]
         scores = []
+        
+        # Create other strategy detections
+        s1 = [u, l, r]
+        s2 = [r, rr, ur]
+        s3 = [l, rr, ul]
+        s4 = [d, dl, dr]
+        s5 = [d, l, r]
+        s6 = [r, rr, dr]
+        s7 = [l, rr, dl]
+        s8 = [u, ul, ur]
+        
+        moves  = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, s1, s2, s3, s4]
         
         # Calculate the individual scores
         otherplayer = (player - 1) % 2
-        for q in quads:
+        for q in moves:
             i = 1
             if otherplayer in q:
                 scores.append(0)
@@ -198,7 +209,7 @@ class Game:
     __players = [0,1]
     
     def __init__(self, multiplayer=False, previous=False):
-        self.grid = Grid(previous[1:])
+        self.grid = Grid()
         self.__players[0] = Human(self.grid, 0)
         if not multiplayer:
             self.__players[1] = Computer(self.grid, 1)
@@ -313,19 +324,20 @@ class Menu:
 
 # Start of script
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'nhmc:')
-    noninteractive = multiplayer = currplayer = False
+#    opts, args = getopt.getopt(sys.argv[1:], 'nhmc:')
+#    noninteractive = multiplayer = currplayer = False
+#    previous = False
+#    for o, a in opts:
+#        if o == "-n":
+#            previous = sys.stdin.read()
+#        elif o == "-h":
+#            raise getopt.GetoptError("")
+#        elif o == "-m":
+#            multiplayer = True
+#        elif o == "-c":
+#            currplayer  = a
+#    previous = str(int(multiplayer)) + str(currplayer) + str(int(previous))
     previous = False
-    for o, a in opts:
-        if o == "-n":
-            previous = sys.stdin.read()
-        elif o == "-h":
-            raise getopt.GetoptError("")
-        elif o == "-m":
-            multiplayer = True
-        elif o == "-c":
-            currplayer  = a
-    previous = str(int(multiplayer)) + str(currplayer) + previous
     menu = Menu()
     menu.execute(previous)
 except getopt.GetoptError, err:
