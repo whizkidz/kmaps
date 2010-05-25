@@ -1,3 +1,23 @@
+# Copyright (C) 2010 Kevin Chung <kchungsp93@gmail.com>
+#                    Tyler Romeo <tylerromeo@gmail.com>,
+#                    Eugene Dobry <edobry@gmail.com>:
+#
+# This file is part of Kmaps.
+#
+# Kmaps is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Kmaps is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Kmaps.  If not, see <http://www.gnu.org/licenses/>.
+
+from common import *
 import players
 
 class Game:
@@ -22,7 +42,7 @@ class Game:
             if status:
                 current = (current + 1) % 2
             else:
-                print "Invalid move."
+                cout("Invalid move.")
         return True
      
     def winner(self):
@@ -74,28 +94,25 @@ class Grid:
             self.grid[level-1][row-1][column-1] = player
         return True
     
-    def printtable(self, readable = True):
-        if not readable:
-            print a.grid
-        
+    def printtable(self):
         a = self
-        print "-----------------"
-        print "| "+a.g111+" | "+a.g112+" | "+a.g113+" | "+a.g114+" |"
-        print "-----------------"
-        print "| "+a.g121+" | "+a.g122+" | "+a.g123+" | "+a.g124+" |"
-        print "-----------------"
-        print "| "+a.g131+" | "+a.g132+" | "+a.g133+" | "+a.g134+" |"
-        print "-----------------"
-        print "| "+a.g141+" | "+a.g142+" | "+a.g143+" | "+a.g144+" |"
-        print "-----------------"
-        print ""
-        print ""
-        print "-----------------"
-        print "| "+a.g211+" | "+a.g212+" | "+a.g213+" | "+a.g214+" |"
-        print "-----------------"
-        print "| "+a.g221+" | "+a.g222+" | "+a.g223+" | "+a.g224+" |"
-        print "-----------------"
-        print "| "+a.g231+" | "+a.g232+" | "+a.g233+" | "+a.g234+" |"
-        print "-----------------"
-        print "| "+a.g241+" | "+a.g242+" | "+a.g243+" | "+a.g244+" |"
-        print "-----------------"
+        cout("-----------------"                                    )
+        cout("| "+a.g111+" | "+a.g112+" | "+a.g113+" | "+a.g114+" |")
+        cout("-----------------"                                    )
+        cout("| "+a.g121+" | "+a.g122+" | "+a.g123+" | "+a.g124+" |")
+        cout("-----------------"                                    )
+        cout("| "+a.g131+" | "+a.g132+" | "+a.g133+" | "+a.g134+" |")
+        cout("-----------------"                                    )
+        cout("| "+a.g141+" | "+a.g142+" | "+a.g143+" | "+a.g144+" |")
+        cout("-----------------"                                    )
+        cout(""                                                     )
+        cout(""                                                     )
+        cout("-----------------"                                    )
+        cout("| "+a.g211+" | "+a.g212+" | "+a.g213+" | "+a.g214+" |")
+        cout("-----------------"                                    )
+        cout("| "+a.g221+" | "+a.g222+" | "+a.g223+" | "+a.g224+" |")
+        cout("-----------------"                                    )
+        cout("| "+a.g231+" | "+a.g232+" | "+a.g233+" | "+a.g234+" |")
+        cout("-----------------"                                    )
+        cout("| "+a.g241+" | "+a.g242+" | "+a.g243+" | "+a.g244+" |")
+        cout("-----------------"                                    )

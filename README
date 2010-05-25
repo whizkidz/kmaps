@@ -1,0 +1,34 @@
+Kmaps is a logic game developed long ago by teachers
+at Staten Island Technical High School. It is a 3D spin
+on Tic-Tac-Toe, and much harder. Instead of Xs and Os,
+the players are represented by 1s and 0s.
+
+Each game has two four-by-four grids. The game is three-
+dimensional, so when playing, imagine that the two grids
+are actually on top of each other, with the corresponding
+squares lining up. Furthermore, each grid has no real border:
+the right-most square in a row is theoretically adjacent to
+the left-most square in the same row, and the same goes for
+top and bottom.
+
+The goal of the game is to get as many quads as possible.
+A quad is any two-by-two block or an entire row or column
+of four squares with your player symbol in it. Keep in mind
+that the game is three-dimensional, so two adjacent squares
+on top of another two adjacent squares in the other grid is
+also considered a quad. Finally, remember the grid has no
+borders, so having two left-most adjacent squares and two
+right-most adjacent squares in the same rows is a quad. As an
+example, getting the four corners of any grid is a quad.
+
+Then there is the octet. This is where you get two quads on
+top of each other in the two different levels. An octet means
+an automatic win, so be careful.
+
+In this electronic version of the game, begin playing by
+selecting either Player v. Computer or Player v. Player back
+on the menu. For each turn, it asks you where you want to go.
+Simply type a three digit number as your move, where the first
+number is the grid (1 or 2), the second is the row (1, 2, 3, or 4)
+and the third is the column (also 1, 2, 3, or 4). Don't worry,
+the script will catch invalid moves.

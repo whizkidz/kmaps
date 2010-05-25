@@ -17,19 +17,16 @@
 # You should have received a copy of the GNU General Public License
 # along with Kmaps.  If not, see <http://www.gnu.org/licenses/>.
 
-import kmaps.common
-from kmaps.menu import *
+def cout(message, alert = False):
+    global KMAPS_NS
+    if KMAPS_NS == "terminal":
+        print message
+    else:
+        print message
 
-print "<program>  Copyright (C) <year>  <name of author>"
-print "This program comes with ABSOLUTELY NO WARRANTY; for details run with -w."
-print "This is free software, and you are welcome to redistribute it"
-print "under certain conditions; select License in the menu for details."
-
-# Start of script
-try:
-    kmaps.common.KMAPS_NS = "terminal"
-    if __name__ == "__main__":
-        menu = Menu()
-        menu.execute()
-except KeyboardInterrupt:
-    print
+def cin(prompt):
+    global KMAPS_NS
+    if KMAPS_NS == "terminal":
+        return raw_input(prompt)
+    else:
+        return raw_input(prompt)
