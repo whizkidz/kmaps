@@ -17,11 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Kmaps.  If not, see <http://www.gnu.org/licenses/>.
 
-import cgi, cgitb
 import kmaps.common
 from kmaps.menu import *
-
-cgitb.enable()
 
 print "<program>  Copyright (C) <year>  <name of author>"
 print "This program comes with ABSOLUTELY NO WARRANTY; for details run with -w."

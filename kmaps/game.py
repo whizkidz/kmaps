@@ -52,34 +52,31 @@ class Game:
 class Grid:
     """The Kmaps grid."""
     
-    mgrid = {0:\
+    grid = {0:\
                {0:{0:" ",1:" ",2:" ",3:" "},\
                 1:{0:" ",1:" ",2:" ",3:" "},\
                 2:{0:" ",1:" ",2:" ",3:" "},\
                 3:{0:" ",1:" ",2:" ",3:" "}},\
-              1:\
+            1:\
                {0:{0:" ",1:" ",2:" ",3:" "},\
                 1:{0:" ",1:" ",2:" ",3:" "},\
                 2:{0:" ",1:" ",2:" ",3:" "},\
                 3:{0:" ",1:" ",2:" ",3:" "}}}
     
     def __getattr__(self, key):
-        if key[0] != 'g':
-            raise AttributeError
-        
         level  = int(key[1]) - 1
         row    = int(key[2]) - 1
         column = int(key[3]) - 1
         
         if column == -1:
-            return self.mgrid[level][row]
+            return self.grid[level][row]
         elif row == -1:
-            return [self.mgrid[level][0][column],\
-                    self.mgrid[level][1][column],\
-                    self.mgrid[level][2][column],\
-                    self.mgrid[level][3][column]]
+            return [self.grid[level][0][column],\
+                    self.grid[level][1][column],\
+                    self.grid[level][2][column],\
+                    self.grid[level][3][column]]
         else:
-            return str(self.mgrid[level][row][column])
+            return str(self.grid[level][row][column])
     
     def move(self, level, row, column, player):
         level  = int(level)
@@ -91,10 +88,10 @@ class Grid:
            not column in [  1,2,3,4] or \
            not player in [0,1]:
            return False
-        elif self.mgrid[level-1][row-1][column-1] != " ":
+        elif self.grid[level-1][row-1][column-1] != " ":
            return False
         else:
-            self.mgrid[level-1][row-1][column-1] = player
+            self.grid[level-1][row-1][column-1] = player
         return True
     
     def printtable(self):
