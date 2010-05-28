@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 #ignore thumbnails created by windows
 Thumbs.db
@@ -31,3 +32,7 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 App_Data/KMAPS.MDF
 App_Data/kmaps_log.ldf
+=======
+*~
+*\.pyc
+>>>>>>> 259e335b9574010ee6c836f3cdf810628c29c6a4

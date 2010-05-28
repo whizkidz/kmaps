@@ -1,0 +1,5 @@
+c:\users\eugene\documents\KingOfKmaps\KingOfKmaps\bin\KingOfKmaps.dll
+c:\users\eugene\documents\KingOfKmaps\KingOfKmaps\bin\KingOfKmaps.pdb
+c:\users\eugene\documents\KingOfKmaps\KingOfKmaps\obj\Debug\ResolveAssemblyReference.cache
+c:\users\eugene\documents\KingOfKmaps\KingOfKmaps\obj\Debug\KingOfKmaps.dll
+c:\users\eugene\documents\KingOfKmaps\KingOfKmaps\obj\Debug\KingOfKmaps.pdb
