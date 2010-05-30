@@ -64,6 +64,8 @@ class Grid:
                 3:{0:" ",1:" ",2:" ",3:" "}}}
     
     def __getattr__(self, key):
+	if key[0] != 'g':
+		raise AttributeError
         level  = int(key[1]) - 1
         row    = int(key[2]) - 1
         column = int(key[3]) - 1
