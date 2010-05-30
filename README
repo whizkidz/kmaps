@@ -1,34 +1,40 @@
-Kmaps is a logic game developed long ago by teachers
-at Staten Island Technical High School. It is a 3D spin
-on Tic-Tac-Toe, and much harder. Instead of Xs and Os,
-the players are represented by 1s and 0s.
+K-maps is a logic game developed long ago by teachers at Staten Island
+Technical High School. It is a three dimensional spin on Tic-Tac-Toe, but
+much harder. Instead of Xs and Os, the players are represented by 1s and
+0s in honor of the base 2 number system used in electronics. K-maps
+actually stands for Karnaugh maps, which are four-by-four grids used to
+simplify boolean algebra problems.
 
-Each game has two four-by-four grids. The game is three-
-dimensional, so when playing, imagine that the two grids
-are actually on top of each other, with the corresponding
-squares lining up. Furthermore, each grid has no real border:
-the right-most square in a row is theoretically adjacent to
-the left-most square in the same row, and the same goes for
-top and bottom.
+Each game has two four-by-four grids. The game is three-dimensional, and in
+the game those two grids are theoretically on top of each other, with the
+corresponding squares lining up. Literally imagine taking the first
+four-by-four grid and stacking it on top of the other one. Furthermore, each
+grid has no real borders: the right-most square in a row is technically
+adjacent to the left-most square in the same row, and the same goes for top
+and bottom. So in other words, moving off the edge of the grid just lands
+you on the other side.
 
-The goal of the game is to get as many quads as possible.
-A quad is any two-by-two block or an entire row or column
-of four squares with your player symbol in it. Keep in mind
-that the game is three-dimensional, so two adjacent squares
-on top of another two adjacent squares in the other grid is
-also considered a quad. Finally, remember the grid has no
-borders, so having two left-most adjacent squares and two
-right-most adjacent squares in the same rows is a quad. As an
-example, getting the four corners of any grid is a quad.
+The goal of the game is to get as many quads as possible. A quad is any four
+boxes that are adjacent to each other, where each box in the quad must be
+adjacent to two other boxes in the quad. For example, a two-by-two square of
+boxes is a quad because each box is next to two other boxes. An entire row
+or column of boxes is also considered a quad for the same reason (remember
+that the two edges of the row or column are really next to each other since
+the grids have no borders). Also keep in mind that the game is three-dimensional,
+so if two adjacent boxes are on top of another two adjacent boxes in the other
+grid, that is also considered a quad. But always remember that each block must
+be touching two other blocks at all times.
 
-Then there is the octet. This is where you get two quads on
-top of each other in the two different levels. An octet means
-an automatic win, so be careful.
+Then there is the octet. An octect is similar to a quad, except this time each
+box must be adjacent to three other boxes in the octect. An easier way to think
+about an octet is two quads next to each other (or on top of each other),
+because any time two quads are put next to each other an octect is formed. So an
+example of an octet would be getting two entire rows of boxes right next to each
+other. An octet means an automatic win for whoever gets it, so be careful.
 
-In this electronic version of the game, begin playing by
-selecting either Player v. Computer or Player v. Player back
-on the menu. For each turn, it asks you where you want to go.
-Simply type a three digit number as your move, where the first
-number is the grid (1 or 2), the second is the row (1, 2, 3, or 4)
-and the third is the column (also 1, 2, 3, or 4). Don't worry,
-the script will catch invalid moves.
+In this electronic version of the game, begin playing by selecting either Player
+v. Computer or Player v. Player back on the menu. For each turn, it asks you
+where you want to go. Simply type a three digit number as your move, where the
+first number is the grid (1 or 2), the second is the row (1, 2, 3, or 4) and the
+third is the column (also 1, 2, 3, or 4). Don't worry, the script will catch
+invalid moves.
