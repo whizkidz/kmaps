@@ -3,7 +3,7 @@ from Tkinter import *
 from copy import deepcopy
 import kmaps.game, kmaps.common
 
-class KmapsGui(Frame, kmaps.game.Grid):
+class KmapsGui(Frame, kmaps.game.Grid, kmaps.game.Game):
     widgets = []
     
     def __init__(self, master=None):
@@ -13,6 +13,40 @@ class KmapsGui(Frame, kmaps.game.Grid):
         self.printtable()
 
     def printtable(self):
+        commands = {0: {\
+                0: {0:lambda: self.move(1, 1, 1, 0),\
+                    1:lambda: self.move(1, 1, 2, 0),\
+                    2:lambda: self.move(1, 1, 3, 0),\
+                    3:lambda: self.move(1, 1, 4, 0)},\
+                1: {0:lambda: self.move(1, 2, 1, 0),\
+                    1:lambda: self.move(1, 2, 2, 0),\
+                    2:lambda: self.move(1, 2, 3, 0),\
+                    3:lambda: self.move(1, 2, 4, 0)},\
+                2: {0:lambda: self.move(1, 3, 1, 0),\
+                    1:lambda: self.move(1, 3, 2, 0),\
+                    2:lambda: self.move(1, 3, 3, 0),\
+                    3:lambda: self.move(1, 3, 4, 0)},\
+                3: {0:lambda: self.move(1, 4, 1, 0),\
+                    1:lambda: self.move(1, 4, 2, 0),\
+                    2:lambda: self.move(1, 4, 3, 0),\
+                    3:lambda: self.move(1, 4, 4, 0)}},\
+            1: {\
+                0: {0:lambda: self.move(2, 1, 1, 0),\
+                    1:lambda: self.move(2, 1, 2, 0),\
+                    2:lambda: self.move(2, 1, 3, 0),\
+                    3:lambda: self.move(2, 1, 4, 0)},\
+                1: {0:lambda: self.move(2, 2, 1, 0),\
+                    1:lambda: self.move(2, 2, 2, 0),\
+                    2:lambda: self.move(2, 2, 3, 0),\
+                    3:lambda: self.move(2, 2, 4, 0)},\
+                2: {0:lambda: self.move(2, 3, 1, 0),\
+                    1:lambda: self.move(2, 3, 2, 0),\
+                    2:lambda: self.move(2, 3, 3, 0),\
+                    3:lambda: self.move(2, 3, 4, 0)},\
+                3: {0:lambda: self.move(2, 4, 1, 0),\
+                    1:lambda: self.move(2, 4, 2, 0),\
+                    2:lambda: self.move(2, 4, 3, 0),\
+                    3:lambda: self.move(2, 4, 4, 0)}}}
         for level in range(0,2):
             frame = Frame(self)
             frame.grid(row = level)
@@ -20,20 +54,17 @@ class KmapsGui(Frame, kmaps.game.Grid):
                 for mcol in range(0,4):
                     box    = StringVar()
                     box.set(' ')
-                    command = lambda: self.move(level+1, mrow+1, mcol+1, 0)
                     self.mgrid[level][mrow][mcol] = box
                     self.widgets.append(Button(frame,\
                                     textvariable = box,\
-                                    command      = command\
+                                    command      = commands[level][mrow][mcol]\
                                     ).grid(row = mrow, column = mcol))
             frame.pack()
             if level == 0:
                 separator = Frame(self, height=2, bd=1, relief=SUNKEN)
                 separator.pack(fill=X, padx=5, pady=5)
-        print command
     
     def move(self, level, row, column, player):
-        print level,row,column
         level  = int(level)
         row    = int(row)
         column = int(column)
