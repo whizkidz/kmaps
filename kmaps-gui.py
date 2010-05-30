@@ -7,6 +7,7 @@ class KmapsGui(Frame, kmaps.game.Grid):
     widgets = []
     
     def __init__(self, master=None):
+	self.mgrid = kmaps.game.Grid.grid
         Frame.__init__(self, master)
         self.grid()
         self.printtable()
