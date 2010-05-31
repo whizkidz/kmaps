@@ -21,44 +21,43 @@ from common import *
 
 class Computer:
     """Handles the fitness calculations for the computer."""
-    __moves = 0
+    moves = 0
     
     def __init__(self, grid, player):
-        self.__grid = grid
-        self.__player = player
+        self.grid = grid
+        self.player = player
     
     def fitness(self, level, row, column, player):
-        level = level - 1
-        row   = row - 1
-        column = column - 1
-        
-        if self.__grid.grid[level][row][column] != " ":
+        level  = int(level) - 1
+        row    = int(row) - 1
+        column = int(column) - 1
+        if self.grid.get(level, row, column) != " ":
             return 0
         
         # Get the surrounding spaces
-        u   = self.__grid.grid[ level     ][(row+1)%4][ column     ]
-        d   = self.__grid.grid[ level     ][(row-1)%4][ column     ]
-        l   = self.__grid.grid[ level     ][ row     ][(column-1)%4]
-        r   = self.__grid.grid[ level     ][ row     ][(column+1)%4]
-        ul  = self.__grid.grid[ level     ][(row+1)%4][(column-1)%4]
-        ur  = self.__grid.grid[ level     ][(row+1)%4][(column+1)%4]
-        dl  = self.__grid.grid[ level     ][(row-1)%4][(column-1)%4]
-        dr  = self.__grid.grid[ level     ][(row-1)%4][(column+1)%4]
+        u   = self.grid.get( level     , (row+1)%4,  column     )
+        d   = self.grid.get( level     , (row-1)%4,  column     )
+        l   = self.grid.get( level     ,  row     , (column-1)%4)
+        r   = self.grid.get( level     ,  row     , (column+1)%4)
+        ul  = self.grid.get( level     , (row+1)%4, (column-1)%4)
+        ur  = self.grid.get( level     , (row+1)%4, (column+1)%4)
+        dl  = self.grid.get( level     , (row-1)%4, (column-1)%4)
+        dr  = self.grid.get( level     , (row-1)%4, (column+1)%4)
         
         # Get the surrounding spaces on the other level
-        a   = self.__grid.grid[(level+1)%2][ row     ][ column     ]
-        au  = self.__grid.grid[(level+1)%2][(row+1)%4][ column     ]
-        ad  = self.__grid.grid[(level+1)%2][(row-1)%4][ column     ]
-        al  = self.__grid.grid[(level+1)%2][ row     ][(column-1)%4]
-        ar  = self.__grid.grid[(level+1)%2][ row     ][(column+1)%4]
-        aul = self.__grid.grid[(level+1)%2][(row+1)%4][(column-1)%4]
-        aur = self.__grid.grid[(level+1)%2][(row+1)%4][(column+1)%4]
-        adl = self.__grid.grid[(level+1)%2][(row-1)%4][(column-1)%4]
-        adr = self.__grid.grid[(level+1)%2][(row-1)%4][(column+1)%4]
+        a   = self.grid.get((level+1)%2,  row     ,  column     )
+        au  = self.grid.get((level+1)%2, (row+1)%4,  column     )
+        ad  = self.grid.get((level+1)%2, (row-1)%4,  column     )
+        al  = self.grid.get((level+1)%2,  row     , (column-1)%4)
+        ar  = self.grid.get((level+1)%2,  row     , (column+1)%4)
+        aul = self.grid.get((level+1)%2, (row+1)%4, (column-1)%4)
+        aur = self.grid.get((level+1)%2, (row+1)%4, (column+1)%4)
+        adl = self.grid.get((level+1)%2, (row-1)%4, (column-1)%4)
+        adr = self.grid.get((level+1)%2, (row-1)%4, (column+1)%4)
         
         # Get final boxes necessary for other quads
-        rr  = self.__grid.grid[ level     ][ row     ][(column+2)%4]
-        dd  = self.__grid.grid[ level     ][(row-2)%4][ column     ]
+        rr  = self.grid.get( level     , row      , (column+2)%4)
+        dd  = self.grid.get( level     , (row-2)%4,  column     )
         
         # Create the quads
         q0 = [u, l, ul]
@@ -81,11 +80,11 @@ class Computer:
             if otherplayer in q:
                 scores.append(0)
             else:
-                if q[0] == player:
+                if q[0] == str(player):
                     i += 1
-                if q[1] == player:
+                if q[1] == str(player):
                     i += 1
-                if q[2] == player:
+                if q[2] == str(player):
                     i += 1
                 i = pow(i,2)
                 scores.append(i)
@@ -95,11 +94,11 @@ class Computer:
     def move(self):
         """Get the fitness for each square and make a move."""
         flevel = frow = fcolumn = fscore = 0
-        otherplayer = (self.__player - 1) % 2
+        otherplayer = (self.player - 1) % 2
         for level in range(1,3):
             for row in range(1,5):
                 for column in range(1,5):
-                    score1 = self.fitness(level, row, column, self.__player)
+                    score1 = self.fitness(level, row, column, self.player)
                     score2 = self.fitness(level, row, column, otherplayer  )
                     score  = score1 + score2
                     if score > fscore:
@@ -107,14 +106,14 @@ class Computer:
                         frow    = row
                         fcolumn = column
                         fscore  = score
-        return self.__grid.move(flevel, frow, fcolumn, self.__player)
+        return self.grid.move(flevel, frow, fcolumn, self.player)
 
 class Human:
-    __grid = 0
+    grid = 0
     
     def __init__(self, grid, player):
-        self.__grid = grid
-        self.__player = player
+        self.grid = grid
+        self.player = player
     
     def move(self):
         position = cin("Where do you want to go? ")
@@ -123,4 +122,4 @@ class Human:
         level  = position[0]
         row    = position[1]
         column = position[2]
-        return self.__grid.move(level, row, column, self.__player)
+        return self.grid.move(level, row, column, self.player)
