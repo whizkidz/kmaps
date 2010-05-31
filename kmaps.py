@@ -1,3 +1,4 @@
+#!/usr/local/bin/python
 # Copyright (C) 2010 Kevin Chung <kchungsp93@gmail.com>
 #                    Tyler Romeo <tylerromeo@gmail.com>,
 #                    Eugene Dobry <edobry@gmail.com>:
@@ -17,8 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Kmaps.  If not, see <http://www.gnu.org/licenses/>.
 
-import kmaps.common
-from kmaps.menu import *
+import sys, kmaps.game, kmaps.menu, kmaps.common
+from Tkinter import *
 
 print "<program>  Copyright (C) <year>  <name of author>"
 print "This program comes with ABSOLUTELY NO WARRANTY; for details run with -w."
@@ -27,9 +28,15 @@ print "under certain conditions; select License in the menu for details."
 
 # Start of script
 try:
-    kmaps.common.KMAPS_NS = "terminal"
-    if __name__ == "__main__":
-        menu = Menu()
-        menu.execute()
+    if sys.argv[1] == "c":
+        kmaps.common.KMAPS_NS = "terminal"
+        if __name__ == "__main__":
+            menu = kmaps.menu.Menu()
+            menu.execute()
+    else:
+        kmaps.common.KMAPS_NS = "gui"
+        if __name__ == "__main__":
+            app = kmaps.game.Game_Gui()
+            app.play()
 except KeyboardInterrupt:
     print
